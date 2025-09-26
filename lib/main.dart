@@ -1,10 +1,22 @@
+import 'package:clean_arch_books_app/Features/home/Domain/Entities/book_entity.dart';
 import 'package:clean_arch_books_app/constants.dart';
 import 'package:clean_arch_books_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  // Initialize Hive
+  await Hive.initFlutter();
+
+  // Register the adapter
+  Hive.registerAdapter(BookEntityAdapter());
+
+  // Open the box for NoteModel
+  await Hive.openBox('books_box');
+
   runApp(const Bookly());
 }
 
