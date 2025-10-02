@@ -20,9 +20,8 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
 
     List<BookEntity> bookEntityList = fetch_book_entity_list(data);
 
-    await hiveService.addDataLocal(
+    await hiveService.addFeaturedBooksLocal(
       bookEntityList: bookEntityList,
-      key: 'featured',
     );
 
     return bookEntityList;
@@ -37,9 +36,8 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
 
     List<BookEntity> bookEntityList = fetch_book_entity_list(data);
 
-    await hiveService.addDataLocal(
+    await hiveService.addNewestBooksLocal(
       bookEntityList: bookEntityList,
-      key: 'newest',
     );
 
     return bookEntityList;

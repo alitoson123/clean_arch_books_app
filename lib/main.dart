@@ -19,7 +19,8 @@ void main() async {
 
   Hive.registerAdapter(BookEntityAdapter());
 
-  await Hive.openBox('books_box');
+  await Hive.openBox<BookEntity>('FeaturedBooksBox');
+  await Hive.openBox<BookEntity>('NewestBooksBox');
 
   setup();
   Bloc.observer = BlocObserverService();
@@ -35,8 +36,10 @@ class Bookly extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) =>
-              FeaturedBooksCubit(getIt<FetchFeaturedBooksUserCase>()),
+          create: (context) {
+            return FeaturedBooksCubit(getIt<FetchFeaturedBooksUserCase>())
+              ..fetchFeaturedBooksMethod();
+          },
         ),
         BlocProvider(
           create: (context) =>

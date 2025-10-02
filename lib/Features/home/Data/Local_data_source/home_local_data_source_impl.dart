@@ -8,13 +8,13 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource {
   HomeLocalDataSourceImpl({required this.hiveService});
   @override
   List<BookEntity> fetchFeaturedBooks() {
-    var result = hiveService.getDataLocal(key: 'featured');
-    return result!;
+    List<BookEntity> result = hiveService.getFeaturedBooksLocal();
+    return result;
   }
 
   @override
   List<BookEntity> fetchNewestBooks() {
-    var result = hiveService.getDataLocal(key: 'newest');
-    return result!;
+    List<BookEntity> result = hiveService.getNewestBooksLocal();
+    return result;
   }
 }

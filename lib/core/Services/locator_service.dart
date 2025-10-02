@@ -11,14 +11,7 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 void setup() {
-  getIt.registerSingleton<FetchFeaturedBooksUserCase>(
-    FetchFeaturedBooksUserCase(homeRepo: getIt.get<HomeRepoImpl>()),
-  );
-  getIt.registerSingleton<FetchNewestBooksUserCase>(
-    FetchNewestBooksUserCase(homeRepo: getIt.get<HomeRepoImpl>()),
-  );
-
-  getIt.registerSingleton<HomeRepoImpl>(
+   getIt.registerSingleton<HomeRepoImpl>(
     HomeRepoImpl(
       homeRemoteDataSource: HomeRemoteDataSourceImpl(
         hiveService: HiveService(),
@@ -27,4 +20,13 @@ void setup() {
       homeLocalDataSource: HomeLocalDataSourceImpl(hiveService: HiveService()),
     ),
   );
+  
+  getIt.registerSingleton<FetchFeaturedBooksUserCase>(
+    FetchFeaturedBooksUserCase(homeRepo: getIt.get<HomeRepoImpl>()),
+  );
+  getIt.registerSingleton<FetchNewestBooksUserCase>(
+    FetchNewestBooksUserCase(homeRepo: getIt.get<HomeRepoImpl>()),
+  );
+
+ 
 }

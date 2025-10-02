@@ -2,18 +2,20 @@ import 'package:clean_arch_books_app/Features/home/Domain/Entities/book_entity.d
 import 'package:hive/hive.dart';
 
 class HiveService {
-  var box = Hive.box<List<BookEntity>>('books_box');
+  var featuredBooksBox = Hive.box<BookEntity>('FeaturedBooksBox');
+  var newestBooksBox = Hive.box<BookEntity>('NewestBooksBox');
 
-  addDataLocal({
-    required List<BookEntity> bookEntityList,
-    required String key,
-  }) async {
-    await box.put(key, bookEntityList);
+  Future<void> addFeaturedBooksLocal({required List<BookEntity> bookEntityList}) async {
+    await featuredBooksBox.addAll(bookEntityList);
   }
 
-  List<BookEntity>? getDataLocal({required String key}) {
-    var data = box.get(key);
-
-    return data;
+  Future<void> addNewestBooksLocal({required List<BookEntity> bookEntityList}) async {
+    await newestBooksBox.addAll(bookEntityList);
+  }
+  List<BookEntity> getFeaturedBooksLocal() {
+    return featuredBooksBox.values.toList();
+  }
+    List<BookEntity> getNewestBooksLocal() {
+    return newestBooksBox.values.toList();
   }
 }

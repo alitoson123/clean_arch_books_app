@@ -6,7 +6,7 @@ import 'package:clean_arch_books_app/core/Errors/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-class HomeRepoImpl extends HomeRepo {
+class  HomeRepoImpl extends HomeRepo {
   final HomeRemoteDataSource homeRemoteDataSource;
   final HomeLocalDataSource homeLocalDataSource;
 
